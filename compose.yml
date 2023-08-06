@@ -1,0 +1,16 @@
+version: "3"
+services:
+  TEMPLATE_EDIT_HERE:
+    build:
+      context: .
+    container_name: TEMPLATE_EDIT_HERE
+    restart: unless-stopped
+    volumes:
+      - ./server:/server
+      - /etc/localtime:/etc/localtime:ro
+    network_mode: bridge
+    ports:
+      - target: 25565
+        published: 25565
+        protocol: tcp
+        mode: host
