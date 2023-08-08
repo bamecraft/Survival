@@ -3,17 +3,19 @@
 # ---- BEGIN OF CONFIG SECTION ---- #
 
 # Target Version
-paperVersion="1.20.1"
-buildNumber=`curl -s -X 'GET' -H 'accept: application/json' "https://api.papermc.io/v2/projects/paper/versions/${paperVersion}/builds" | jq '.builds[-1].build'`
+minecraftVersion="1.20.1"
+paperBuildNumber=`curl -s -X 'GET' -H 'accept: application/json' "https://api.papermc.io/v2/projects/paper/versions/${minecraftVersion}/builds" | jq '.builds[-1].build'`
+purpurBuildNumber=`curl -s -X 'GET' -H 'accept: application/json' "https://api.purpurmc.org/v2/purpur/${minecraftVersion}" | jq '.builds.all[-1]'`
+paperDownloadUrl="https://api.papermc.io/v2/projects/paper/versions/${minecraftVersion}/builds/${paperBuildNumber}/downloads/paper-${minecraftVersion}-${buildNumber}.jar"
+purpurDownloadUrl="https://api.purpurmc.org/v2/purpur/${minecraftVersion}/${purpurBuildNumber}/download"
 
 # Mandatory variables
-downloadUrl="https://api.papermc.io/v2/projects/paper/versions/${paperVersion}/builds/${buildNumber}/downloads/paper-${paperVersion}-${buildNumber}.jar"
+downloadUrl=${purpurDownloadUrl}
 allocatedMemorySize="4G"
 
 # Optional variables
 additionalJvmArguments=""
 additonalScriptPath=""
-
 
 # ----- END OF CONFIG SECTION ----- #
 
