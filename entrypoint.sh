@@ -5,7 +5,7 @@
 # Target Version
 minecraftVersion="1.20.1"
 paperBuildNumber=`curl -s -X 'GET' -H 'accept: application/json' "https://api.papermc.io/v2/projects/paper/versions/${minecraftVersion}/builds" | jq '.builds[-1].build'`
-purpurBuildNumber=`curl -s -X 'GET' -H 'accept: application/json' "https://api.purpurmc.org/v2/purpur/${minecraftVersion}" | jq '.builds.all[-1]'`
+purpurBuildNumber=`curl -s -X 'GET' -H 'accept: application/json' "https://api.purpurmc.org/v2/purpur/${minecraftVersion}" | jq '.builds.all[-1] | tonumber'`
 paperDownloadUrl="https://api.papermc.io/v2/projects/paper/versions/${minecraftVersion}/builds/${paperBuildNumber}/downloads/paper-${minecraftVersion}-${buildNumber}.jar"
 purpurDownloadUrl="https://api.purpurmc.org/v2/purpur/${minecraftVersion}/${purpurBuildNumber}/download"
 
